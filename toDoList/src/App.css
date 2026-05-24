@@ -1,0 +1,213 @@
+.app {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 48px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin: 8px 0 0;
+}
+
+.task-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.task-form input {
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.task-form input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-border);
+}
+
+.task-list {
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: grid;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.card__title {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.card__time {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.status--pending {
+  background: var(--pending-soft);
+  color: var(--pending);
+}
+
+.status--inprogress {
+  background: var(--progress-soft);
+  color: var(--progress);
+}
+
+.status--done {
+  background: var(--done-soft);
+  color: var(--done);
+}
+
+.card--pending {
+  border-color: var(--pending-border);
+}
+
+.card--inprogress {
+  border-color: var(--progress-border);
+}
+
+.card--done {
+  border-color: var(--done-border);
+}
+
+.button {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.button--primary {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.button--ghost {
+  background: transparent;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+}
+
+.card--pending .icon {
+  color: var(--pending);
+}
+
+.card--inprogress .icon {
+  color: var(--progress);
+}
+
+.card--done .icon {
+  color: var(--done);
+}
+
+.button--primary .icon {
+  color: #ffffff;
+}
+
+.button--ghost .icon {
+  color: var(--text-muted);
+}
+
+.empty-state {
+  border-radius: 16px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .task-form {
+    grid-template-columns: 1fr;
+  }
+
+  .card__header {
+    flex-direction: column;
+  }
+
+  .card__time {
+    align-self: flex-start;
+  }
+}
