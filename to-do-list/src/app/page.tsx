@@ -1,17 +1,27 @@
+﻿"use client"
 import { useEffect, useMemo, useState } from 'react'
-import './App.css'
-import Header from './components/Header'
-import TaskForm from './components/TaskForm'
-import TaskList from './components/TaskList'
-import EmptyState from './components/EmptyState'
-import { loadTasks, saveTasks } from './utils/storage'
-import { formatDuration } from './utils/time'
-import type { Task } from './types'
+import Header from '../components/Header'
+import TaskForm from '../components/TaskForm'
+import TaskList from '../components/TaskList'
+import EmptyState from '../components/EmptyState'
+import { loadTasks, saveTasks } from '../utils/storage'
+import { formatDuration } from '../utils/time'
+import type { Task } from '../types'
 
-function App() {
-  const [tasks, setTasks] = useState<Task[]>(() => loadTasks())
-  const [now, setNow] = useState(() => Date.now())
+export default function Home() {
+  const [tasks, setTasks] = useState<Task[]>([])
+  const [now, setNow] = useState<number>(0)
   const [message, setMessage] = useState<string | null>(null)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setTasks(loadTasks())
+      setNow(Date.now())
+      setIsMounted(true)
+    }, 0)
+    return () => clearTimeout(timerId)
+  }, [])
 
   const activeTaskId = useMemo(
     () => tasks.find((task) => task.status === 'inprogress')?.id ?? null,
@@ -19,8 +29,8 @@ function App() {
   )
 
   useEffect(() => {
-    saveTasks(tasks)
-  }, [tasks])
+    if (isMounted) saveTasks(tasks)
+  }, [tasks, isMounted])
 
   useEffect(() => {
     if (!activeTaskId) return
@@ -96,8 +106,11 @@ function App() {
         ? now - task.startedAt
         : 0
 
-    // Mantiene el tiempo acumulado y suma el tramo activo si aplica.
     return formatDuration(task.timeMs + elapsed)
+  }
+
+  if (!isMounted) {
+    return null
   }
 
   return (
@@ -124,4 +137,5 @@ function App() {
   )
 }
 
-export default App
+
+

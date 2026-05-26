@@ -1,6 +1,6 @@
 # Task Timer
 
-Aplicación de lista de tareas con temporizador creada en React + TypeScript + Vite.
+Aplicación de lista de tareas con temporizador desarrollada con Next.js + React + TypeScript.
 
 ## Funcionalidades
 
@@ -9,12 +9,6 @@ Aplicación de lista de tareas con temporizador creada en React + TypeScript + V
 - Persistencia en `localStorage` para mantener el estado al recargar.
 - Renderizado y estilos condicionales según el estado de la tarea.
 
-## Estructura
-
-- `src/components`: componentes reutilizables (Card, formulario, lista).
-- `src/utils`: utilidades de tiempo y almacenamiento.
-- `src/types.ts`: tipos compartidos.
-
 ## Ejecutar el proyecto
 
 ```bash
@@ -22,9 +16,9 @@ npm install
 npm run dev
 ```
 
-## Build y vista previa
+## Build y producción
 
 ```bash
 npm run build
-npm run preview
+npm run start
 ```
